@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Certificados UAVSICS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <img src="img/logo-uavsics.png" 
+             alt="UAVSICS"
+             class="logo">
+
+        <h1>Validación de Certificados</h1>
+
+        <p>
+            Plataforma oficial de validación de certificados emitidos por UAVSICS.
+        </p>
+
+        <div class="search-box">
+
+            <input 
+                type="text" 
+                id="codigoCertificado" 
+                placeholder="Ingrese código del certificado">
+
+            <button onclick="validarCertificado()">
+                Validar
+            </button>
+
+        </div>
+
+        <p id="resultado"></p>
+
+    </div>
+
+
+<script>
+
+function validarCertificado(){
+
+    let codigo = document.getElementById("codigoCertificado").value;
+
+    if(codigo.trim() === ""){
+        document.getElementById("resultado").innerHTML =
+        "Ingrese un código válido";
+        return;
+    }
+
+    window.location.href =
+    "verificar.html?id=" + codigo;
+
+}
+
+</script>
+
+
+</body>
+</html>
