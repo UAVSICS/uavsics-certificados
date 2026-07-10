@@ -1,20 +1,11 @@
 [
   {
     "id": "UAVSICS-2026-0001",
-    "alumno": "Eduardo Péres Rojas",
-    "curso": "Fotogrametría Digital con Pix4D",
-    "fecha": "09-07-2026",
-    "instructor": "Jorge Poblete",
-    "estado": "Válido",
-    "pdf": "https://drive.google.com/file/d/1DP7D2YrWC8WYmNg01BAJFEAIoUoYwPE1/view?usp=drivesdk"
-  },
-  {
-    "id": "UAVSICS-2026-0002",
-    "alumno": "Macarena Moreno",
-    "curso": "Autel Dragonfish Series",
+    "alumno": "Macarea Moreno",
+    "curso": "WingtraOne GEN II",
     "fecha": "10-07-2026",
     "instructor": "Jorge Poblete",
     "estado": "Válido",
-    "pdf": "https://drive.google.com/file/d/1AlI1cweqpQxhZqqCwggyLlyZnzf7UGPe/view?usp=drivesdk"
+    "pdf": "https://drive.google.com/file/d/18mxyT1YRBsMGG3TaMufMIRjprEFkWoEu/view?usp=drivesdk"
   }
 ]
