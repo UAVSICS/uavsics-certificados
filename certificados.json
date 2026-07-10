@@ -1,0 +1,16 @@
+[
+  {
+    "id": "UAV-2026-0001",
+    "alumno": "Juan Pérez",
+    "curso": "Operador RPAS Básico",
+    "fecha": "10-07-2026",
+    "instructor": "Jorge Poblete"
+  },
+  {
+    "id": "UAV-2026-0002",
+    "alumno": "María González",
+    "curso": "Operador RPAS Avanzado",
+    "fecha": "15-07-2026",
+    "instructor": "Jorge Poblete"
+  }
+]
