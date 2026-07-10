@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,19 +19,20 @@
 
 
 <img src="img/logo-uavsics.png"
-     alt="UAVSICS"
-     class="logo">
+alt="UAVSICS"
+class="logo">
 
 
 <h1>Validación de Certificado UAVSICS</h1>
 
 
 <div id="contenido">
-    Verificando certificado...
+Verificando certificado...
 </div>
 
 
 </div>
+
 
 
 <script>
@@ -41,21 +43,23 @@ const parametros = new URLSearchParams(window.location.search);
 const idBuscado = parametros.get("id");
 
 
+
 if (!idBuscado) {
 
-    document.getElementById("contenido").innerHTML = `
 
-    <h2>⚠️ Código no recibido</h2>
+document.getElementById("contenido").innerHTML = `
 
-    <p>
-    No se ingresó un código de certificado válido.
-    </p>
+<h2>⚠️ Código no recibido</h2>
 
-    `;
+<p>
+No se ingresó un código de certificado válido.
+</p>
 
-}
+`;
 
-else {
+
+} else {
+
 
 
 fetch("certificados.json?v=" + Date.now())
@@ -67,50 +71,16 @@ fetch("certificados.json?v=" + Date.now())
 .then(certificados => {
 
 
+
 const certificado = certificados.find(
 
-    c => c.id === idBuscado
+c => c.id === idBuscado
 
 );
 
 
 
-if (certificado) {
-
-
-document.getElementById("contenido").innerHTML = `
-
-
-<h2>✅ Certificado válido</h2>
-
-
-<p><strong>ID Certificado:</strong><br>
-${certificado.id}</p>
-
-
-<p><strong>Alumno:</strong><br>
-${certificado.alumno}</p>
-
-
-<p><strong>Curso:</strong><br>
-${certificado.curso}</p>
-
-
-<p><strong>Fecha:</strong><br>
-${certificado.fecha}</p>
-
-
-<p><strong>Instructor:</strong><br>
-${certificado.instructor}</p>
-
-
-`;
-
-
-}
-
-
-else {
+if (!certificado) {
 
 
 document.getElementById("contenido").innerHTML = `
@@ -127,7 +97,121 @@ El código ingresado no corresponde a un certificado UAVSICS válido.
 `;
 
 
+return;
+
 }
+
+
+
+
+if (certificado.estado === "Revocado") {
+
+
+document.getElementById("contenido").innerHTML = `
+
+
+<div class="sello-revocado">
+
+<div class="icono-revocado">
+!
+</div>
+
+
+<h2>
+Certificado Revocado
+</h2>
+
+
+<p>
+Este certificado fue revocado por UAVSICS.
+</p>
+
+
+</div>
+
+
+
+<p>
+<strong>Código Certificado:</strong><br>
+${certificado.id}
+</p>
+
+
+`;
+
+return;
+
+
+}
+
+
+
+
+document.getElementById("contenido").innerHTML = `
+
+
+<div class="sello-validado">
+
+
+<div class="icono-validado">
+✓
+</div>
+
+
+<h2>
+Certificado Verificado
+</h2>
+
+
+<p>
+Este certificado ha sido emitido y validado por UAVSICS.
+</p>
+
+
+</div>
+
+
+
+<p>
+<strong>ID Certificado:</strong><br>
+${certificado.id}
+</p>
+
+
+<p>
+<strong>Alumno:</strong><br>
+${certificado.alumno}
+</p>
+
+
+<p>
+<strong>Curso:</strong><br>
+${certificado.curso}
+</p>
+
+
+<p>
+<strong>Fecha de emisión:</strong><br>
+${certificado.fecha}
+</p>
+
+
+<p>
+<strong>Instructor:</strong><br>
+${certificado.instructor}
+</p>
+
+
+
+<a href="${certificado.pdf}" target="_blank">
+
+📄 Ver certificado oficial
+
+</a>
+
+
+`;
+
 
 
 })
@@ -150,11 +234,11 @@ No fue posible verificar el certificado.
 `;
 
 
+
 });
 
 
 }
-
 
 
 </script>
