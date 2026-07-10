@@ -1,16 +1,11 @@
 [
   {
-    "id": "TEST1",
-    "alumno": "Juan Pérez",
+    "id": "UAVSICS-2026-0001",
+    "alumno": "Eduardo Péres Rojas",
     "curso": "Curso 1",
     "fecha": "10-07-2026",
-    "instructor": "Jorge Poblete"
-  },
-  {
-    "id": "TEST2",
-    "alumno": "María González",
-    "curso": "Curso 2",
-    "fecha": "15-07-2026",
-    "instructor": "Jorge Poblete"
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/1trYKMG6NOnqk3qwg7vK54s-ZoFwyW1e-/view?usp=drive_link"
   }
 ]
