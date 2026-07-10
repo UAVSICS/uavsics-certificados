@@ -4,31 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación de Certificado</title>
+    <title>Prueba de URL</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .detalle {
-            text-align: left;
-            margin-top: 30px;
-            font-size: 18px;
-        }
-
-        .estado {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .valido {
-            color: green;
-        }
-
-        .invalido {
-            color: red;
-        }
-    </style>
 </head>
 
 <body>
@@ -39,6 +17,8 @@
              alt="UAVSICS"
              class="logo">
 
+        <h1>Prueba de recepción de ID</h1>
+
         <div id="contenido">
             Cargando...
         </div>
@@ -47,60 +27,13 @@
 
     <script>
 
-        async function validarCertificado() {
+        const parametros = new URLSearchParams(window.location.search);
+        const id = parametros.get("id");
 
-            const parametros = new URLSearchParams(window.location.search);
-            const id = parametros.get("id");
-
-            const contenedor = document.getElementById("contenido");
-
-            try {
-
-                const respuesta = await fetch("certificados.json");
-                const certificados = await respuesta.json();
-
-                const certificado = certificados.find(
-                    c => c.id === id
-                );
-
-                if (certificado) {
-
-                    contenedor.innerHTML = `
-                        <div class="estado valido">
-                            ✓ CERTIFICADO VÁLIDO
-                        </div>
-
-                        <div class="detalle">
-                            <p><strong>Código:</strong> ${certificado.id}</p>
-                            <p><strong>Alumno:</strong> ${certificado.alumno}</p>
-                            <p><strong>Curso:</strong> ${certificado.curso}</p>
-                            <p><strong>Fecha:</strong> ${certificado.fecha}</p>
-                            <p><strong>Instructor:</strong> ${certificado.instructor}</p>
-                        </div>
-                    `;
-
-                } else {
-
-                    contenedor.innerHTML = `
-                        <div class="estado invalido">
-                            ✗ CERTIFICADO NO ENCONTRADO
-                        </div>
-                    `;
-                }
-
-            } catch (error) {
-
-                console.error(error);
-
-                contenedor.innerHTML = `
-                    <div class="estado invalido">
-                        Error al cargar la base de datos
-                    </div>
-                `;
-            }
-        }
-
-        validarCertificado();
+        document.getElementById("contenido").innerHTML = `
+            <h2>ID recibido:</h2>
+            <p style="font-size:24px; font-weight:bold;">${id}</p>
+        `;
 
     </script>
 
