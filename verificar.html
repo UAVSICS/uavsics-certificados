@@ -1,90 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verificación de Certificado</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Certificado</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
-<style>
-.detalle{
-    text-align:left;
-    margin-top:30px;
-    font-size:18px;
-}
-.estado{
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-.valido{
-    color:green;
-}
-.invalido{
-    color:red;
-}
-</style>
+    <style>
+        .detalle {
+            text-align: left;
+            margin-top: 30px;
+            font-size: 18px;
+        }
 
+        .estado {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .valido {
+            color: green;
+        }
+
+        .invalido {
+            color: red;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <img src="img/logo-uavsics.png"
-         alt="UAVSICS"
-         class="logo">
+        <img src="img/logo-uavsics.png"
+             alt="UAVSICS"
+             class="logo">
 
-    <div id="contenido">
-        Cargando...
+        <div id="contenido">
+            Cargando...
+        </div>
+
     </div>
 
-</div>
+    <script>
 
-<script>
+        async function validarCertificado() {
 
-const certificados = {
-    "UAV-2026-0001": {
-        alumno: "Juan Pérez",
-        curso: "Operador RPAS Básico",
-        fecha: "10-07-2026",
-        instructor: "Jorge Poblete"
-    }
-};
+            const parametros = new URLSearchParams(window.location.search);
+            const id = parametros.get("id");
 
-const parametros = new URLSearchParams(window.location.search);
-const id = parametros.get("id");
+            const contenedor = document.getElementById("contenido");
 
-const contenedor = document.getElementById("contenido");
+            try {
 
-if(certificados[id]){
+                const respuesta = await fetch("certificados.json");
+                const certificados = await respuesta.json();
 
-    const c = certificados[id];
+                const certificado = certificados.find(
+                    c => c.id === id
+                );
 
-    contenedor.innerHTML = `
-        <div class="estado valido">
-            ✓ CERTIFICADO VÁLIDO
-        </div>
+                if (certificado) {
 
-        <div class="detalle">
-            <p><strong>Código:</strong> ${id}</p>
-            <p><strong>Alumno:</strong> ${c.alumno}</p>
-            <p><strong>Curso:</strong> ${c.curso}</p>
-            <p><strong>Fecha:</strong> ${c.fecha}</p>
-            <p><strong>Instructor:</strong> ${c.instructor}</p>
-        </div>
-    `;
+                    contenedor.innerHTML = `
+                        <div class="estado valido">
+                            ✓ CERTIFICADO VÁLIDO
+                        </div>
 
-}else{
+                        <div class="detalle">
+                            <p><strong>Código:</strong> ${certificado.id}</p>
+                            <p><strong>Alumno:</strong> ${certificado.alumno}</p>
+                            <p><strong>Curso:</strong> ${certificado.curso}</p>
+                            <p><strong>Fecha:</strong> ${certificado.fecha}</p>
+                            <p><strong>Instructor:</strong> ${certificado.instructor}</p>
+                        </div>
+                    `;
 
-    contenedor.innerHTML = `
-        <div class="estado invalido">
-            ✗ CERTIFICADO NO ENCONTRADO
-        </div>
-    `;
-}
+                } else {
 
-</script>
+                    contenedor.innerHTML = `
+                        <div class="estado invalido">
+                            ✗ CERTIFICADO NO ENCONTRADO
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                contenedor.innerHTML = `
+                    <div class="estado invalido">
+                        Error al cargar la base de datos
+                    </div>
+                `;
+            }
+        }
+
+        validarCertificado();
+
+    </script>
 
 </body>
+
 </html>
