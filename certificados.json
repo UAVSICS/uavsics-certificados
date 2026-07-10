@@ -1,11 +1,229 @@
-[
-  {
-    "id": "UAVSICS-2026-0001",
-    "alumno": "Eduardo Péres Rojas",
-    "curso": "Curso 1",
-    "fecha": "10-07-2026",
-    "instructor": "Jorge Poblete",
-    "estado": "Válido",
-    "pdf": "https://drive.google.com/file/d/1trYKMG6NOnqk3qwg7vK54s-ZoFwyW1e-/view?usp=drive_link"
-  }
-]
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Validación de Certificado UAVSICS</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<img src="img/logo-uavsics.png"
+     alt="UAVSICS"
+     class="logo">
+
+
+<h1>Validación de Certificado UAVSICS</h1>
+
+
+<div id="contenido">
+    Verificando certificado...
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+const parametros = new URLSearchParams(window.location.search);
+
+const idBuscado = parametros.get("id");
+
+
+
+if (!idBuscado) {
+
+
+document.getElementById("contenido").innerHTML = `
+
+<h2>⚠️ Código no recibido</h2>
+
+<p>
+No se ingresó un código de certificado válido.
+</p>
+
+`;
+
+
+
+} else {
+
+
+
+fetch("certificados.json?v=" + Date.now())
+
+.then(respuesta => respuesta.json())
+
+
+.then(certificados => {
+
+
+
+const certificado = certificados.find(
+
+c => c.id === idBuscado
+
+);
+
+
+
+if (!certificado) {
+
+
+document.getElementById("contenido").innerHTML = `
+
+
+<h2>❌ Certificado no encontrado</h2>
+
+
+<p>
+El código ingresado no corresponde a un certificado UAVSICS válido.
+</p>
+
+
+`;
+
+return;
+
+}
+
+
+
+
+if (certificado.estado === "Revocado") {
+
+
+
+document.getElementById("contenido").innerHTML = `
+
+
+<h2>⚠️ Certificado revocado</h2>
+
+
+<p>
+Este certificado ha sido revocado por UAVSICS.
+</p>
+
+
+<p>
+<strong>Código:</strong><br>
+${certificado.id}
+</p>
+
+
+`;
+
+return;
+
+
+}
+
+
+
+
+document.getElementById("contenido").innerHTML = `
+
+
+<h2>✅ Certificado válido</h2>
+
+
+<p>
+<strong>ID Certificado:</strong><br>
+${certificado.id}
+</p>
+
+
+<p>
+<strong>Alumno:</strong><br>
+${certificado.alumno}
+</p>
+
+
+<p>
+<strong>Curso:</strong><br>
+${certificado.curso}
+</p>
+
+
+<p>
+<strong>Fecha de emisión:</strong><br>
+${certificado.fecha}
+</p>
+
+
+<p>
+<strong>Instructor:</strong><br>
+${certificado.instructor}
+</p>
+
+
+
+<a href="${certificado.pdf}" 
+target="_blank"
+style="
+display:inline-block;
+margin-top:20px;
+padding:12px 22px;
+background:#1a73e8;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-weight:bold;
+">
+
+📄 Ver certificado oficial
+
+</a>
+
+
+`;
+
+
+
+})
+
+
+.catch(error => {
+
+
+document.getElementById("contenido").innerHTML = `
+
+
+<h2>⚠️ Error de conexión</h2>
+
+
+<p>
+No fue posible verificar el certificado.
+</p>
+
+
+`;
+
+
+
+});
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
