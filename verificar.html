@@ -11,92 +11,154 @@
 
 </head>
 
+
 <body>
 
 <div class="container">
+
 
 <img src="img/logo-uavsics.png"
      alt="UAVSICS"
      class="logo">
 
-<h1>Validación de Certificado</h1>
+
+<h1>Validación de Certificado UAVSICS</h1>
+
 
 <div id="contenido">
     Verificando certificado...
 </div>
+
 
 </div>
 
 
 <script>
 
+
 const parametros = new URLSearchParams(window.location.search);
 
 const idBuscado = parametros.get("id");
 
 
+if (!idBuscado) {
+
+    document.getElementById("contenido").innerHTML = `
+
+    <h2>⚠️ Código no recibido</h2>
+
+    <p>
+    No se ingresó un código de certificado válido.
+    </p>
+
+    `;
+
+}
+
+else {
+
+
 fetch("certificados.json")
 
+
 .then(respuesta => respuesta.json())
+
 
 .then(certificados => {
 
 
-    const certificado = certificados.find(
-        c => c.id === idBuscado
-    );
+const certificado = certificados.find(
+
+    c => c.id === idBuscado
+
+);
 
 
-    if(certificado){
 
-        document.getElementById("contenido").innerHTML = `
-
-        <h2>✅ Certificado válido</h2>
-
-        <p><b>ID:</b> ${certificado.id}</p>
-
-        <p><b>Alumno:</b> ${certificado.alumno}</p>
-
-        <p><b>Curso:</b> ${certificado.curso}</p>
-
-        <p><b>Fecha:</b> ${certificado.fecha}</p>
-
-        <p><b>Instructor:</b> ${certificado.instructor}</p>
-
-        `;
-
-    }else{
+if (certificado) {
 
 
-        document.getElementById("contenido").innerHTML = `
+document.getElementById("contenido").innerHTML = `
 
-        <h2>❌ Certificado no encontrado</h2>
 
-        <p>
-        El código ingresado no corresponde a un certificado UAVSICS válido.
-        </p>
+<h2>✅ Certificado válido</h2>
 
-        `;
 
-    }
+<p><strong>ID Certificado:</strong><br>
+${certificado.id}</p>
+
+
+<p><strong>Alumno:</strong><br>
+${certificado.alumno}</p>
+
+
+<p><strong>Curso:</strong><br>
+${certificado.curso}</p>
+
+
+<p><strong>Fecha:</strong><br>
+${certificado.fecha}</p>
+
+
+<p><strong>Instructor:</strong><br>
+${certificado.instructor}</p>
+
+
+`;
+
+
+}
+
+
+else {
+
+
+document.getElementById("contenido").innerHTML = `
+
+
+<h2>❌ Certificado no encontrado</h2>
+
+
+<p>
+El código ingresado no corresponde a un certificado UAVSICS válido.
+</p>
+
+
+`;
+
+
+}
 
 
 })
 
+
 .catch(error => {
+
 
 document.getElementById("contenido").innerHTML = `
 
-<h2>Error de conexión</h2>
 
-<p>${error}</p>
+<h2>⚠️ Error de conexión</h2>
+
+
+<p>
+No fue posible verificar el certificado.
+</p>
+
 
 `;
+
 
 });
 
 
+}
+
+
+
 </script>
+
 
 </body>
 
