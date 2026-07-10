@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificación de Certificado</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.detalle{
+    text-align:left;
+    margin-top:30px;
+    font-size:18px;
+}
+.estado{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+.valido{
+    color:green;
+}
+.invalido{
+    color:red;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <img src="img/logo-uavsics.png"
+         alt="UAVSICS"
+         class="logo">
+
+    <div id="contenido">
+        Cargando...
+    </div>
+
+</div>
+
+<script>
+
+const certificados = {
+    "UAV-2026-0001": {
+        alumno: "Juan Pérez",
+        curso: "Operador RPAS Básico",
+        fecha: "10-07-2026",
+        instructor: "Jorge Poblete"
+    }
+};
+
+const parametros = new URLSearchParams(window.location.search);
+const id = parametros.get("id");
+
+const contenedor = document.getElementById("contenido");
+
+if(certificados[id]){
+
+    const c = certificados[id];
+
+    contenedor.innerHTML = `
+        <div class="estado valido">
+            ✓ CERTIFICADO VÁLIDO
+        </div>
+
+        <div class="detalle">
+            <p><strong>Código:</strong> ${id}</p>
+            <p><strong>Alumno:</strong> ${c.alumno}</p>
+            <p><strong>Curso:</strong> ${c.curso}</p>
+            <p><strong>Fecha:</strong> ${c.fecha}</p>
+            <p><strong>Instructor:</strong> ${c.instructor}</p>
+        </div>
+    `;
+
+}else{
+
+    contenedor.innerHTML = `
+        <div class="estado invalido">
+            ✗ CERTIFICADO NO ENCONTRADO
+        </div>
+    `;
+}
+
+</script>
+
+</body>
+</html>
