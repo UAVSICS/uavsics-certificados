@@ -58,7 +58,7 @@ if (!idBuscado) {
 else {
 
 
-fetch("certificados.json")
+fetch("certificados.json?v=" + Date.now())
 
 
 .then(respuesta => respuesta.json())
