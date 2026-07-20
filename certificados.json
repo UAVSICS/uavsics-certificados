@@ -9,5 +9,16 @@
     "instructor": "Jorge Poblete",
     "estado": "Válido",
     "pdf": "https://drive.google.com/file/d/1_Hte1kEs4zKXcXIF4SI9_zdkfBPvJo07/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0002",
+    "alumno": "Jorge Poblete Santibáñez",
+    "empresa": "UAVSICS",
+    "curso": "Autel Alpha",
+    "horas": 30,
+    "fecha": "20-07-2026",
+    "instructor": "Eduardo Pérez",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/1TTHne11pVswY1ogLpp15trvkggoo8l-o/view?usp=drivesdk"
   }
 ]
