@@ -31,5 +31,16 @@
     "instructor": "Jorge Poblete",
     "estado": "Válido",
     "pdf": "https://drive.google.com/file/d/14PbzkMPTYxzNvhUcyLzXjhzAaarN5uDF/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0004",
+    "alumno": "Macarena Moreno Salas",
+    "empresa": "Aramark",
+    "curso": "WingtraRAY",
+    "horas": 16,
+    "fecha": "20-07-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/12QevywBP5nY5ZnxLOwJZNRmqH02acgbd/view?usp=drivesdk"
   }
 ]
