@@ -20,5 +20,16 @@
     "instructor": "Eduardo Pérez",
     "estado": "Válido",
     "pdf": "https://drive.google.com/file/d/1TTHne11pVswY1ogLpp15trvkggoo8l-o/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0003",
+    "alumno": "Eduardo Pérez Rojas",
+    "empresa": "UAVSICS",
+    "curso": "Autel Apex",
+    "horas": 30,
+    "fecha": "20-07-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/14PbzkMPTYxzNvhUcyLzXjhzAaarN5uDF/view?usp=drivesdk"
   }
 ]
