@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta name="robots" content="noindex, nofollow">
+
 <title>Validación de Certificado UAVSICS</title>
 
 <link rel="stylesheet" href="style.css">
@@ -18,9 +20,11 @@
 <div class="container">
 
 
-<img src="img/logo-uavsics.png"
+<img
+src="img/logo-uavsics.png"
 alt="UAVSICS"
-class="logo">
+class="logo"
+>
 
 
 <h1>Validación de Certificado UAVSICS</h1>
@@ -38,216 +42,411 @@ Verificando certificado...
 <script>
 
 
-const parametros = new URLSearchParams(window.location.search);
+// =================================================
+// CONFIGURACIÓN DEL REGISTRO DE VALIDACIONES
+// =================================================
 
-const idBuscado = parametros.get("id");
+const URL_REGISTRO_VALIDACIONES =
+
+  "https://script.google.com/macros/s/AKfycbz1LRZ08D9qF9YfZirn-ALUnEajNqhVM0mb5dbt9GoY1QthcDp6YAO-jY_cl29aPMdl/exec";
 
 
+
+// =================================================
+// REGISTRAR VALIDACIÓN EN SEGUNDO PLANO
+// =================================================
+
+function registrarValidacion(
+  codigo,
+  resultado,
+  alumno,
+  curso
+) {
+
+  try {
+
+    const parametros =
+      new URLSearchParams({
+
+        codigo:
+          codigo || "",
+
+        resultado:
+          resultado || "",
+
+        alumno:
+          alumno || "",
+
+        curso:
+          curso || ""
+
+      });
+
+
+    fetch(
+
+      URL_REGISTRO_VALIDACIONES +
+      "?" +
+      parametros.toString(),
+
+      {
+
+        method: "GET",
+
+        mode: "no-cors",
+
+        cache: "no-store",
+
+        keepalive: true
+
+      }
+
+    )
+
+    .catch(function() {
+
+      // El registro nunca debe interrumpir
+      // la validación del certificado.
+
+    });
+
+
+  } catch (error) {
+
+    // El registro es silencioso.
+    // La página continúa funcionando.
+
+  }
+
+}
+
+
+
+// =================================================
+// OBTENER CÓDIGO DESDE LA URL
+// =================================================
+
+const parametros =
+  new URLSearchParams(
+    window.location.search
+  );
+
+
+const idBuscado =
+  parametros.get("id");
+
+
+
+// =================================================
+// CÓDIGO NO RECIBIDO
+// =================================================
 
 if (!idBuscado) {
 
 
-document.getElementById("contenido").innerHTML = `
+  document
+    .getElementById("contenido")
+    .innerHTML = `
 
-<h2>⚠️ Código no recibido</h2>
+      <h2>⚠️ Código no recibido</h2>
 
-<p>
-No se ingresó un código de certificado válido.
-</p>
+      <p>
+      No se ingresó un código de certificado válido.
+      </p>
 
-`;
+    `;
+
+
+  registrarValidacion(
+
+    "",
+
+    "Código no recibido",
+
+    "",
+
+    ""
+
+  );
 
 
 } else {
 
 
 
-fetch("certificados.json?v=" + Date.now())
+  // =================================================
+  // CONSULTAR certificados.json
+  // =================================================
 
+  fetch(
 
-.then(respuesta => respuesta.json())
+    "certificados.json?v=" +
+    Date.now()
 
+  )
 
-.then(certificados => {
 
+  .then(function(respuesta) {
 
+    if (!respuesta.ok) {
 
-const certificado = certificados.find(
+      throw new Error(
+        "No fue posible cargar certificados.json"
+      );
 
-c => c.id === idBuscado
+    }
 
-);
+    return respuesta.json();
 
+  })
 
 
-if (!certificado) {
+  .then(function(certificados) {
 
 
-document.getElementById("contenido").innerHTML = `
 
+    const certificado =
+      certificados.find(
 
-<h2>❌ Certificado no encontrado</h2>
+        function(certificadoActual) {
 
+          return (
+            String(certificadoActual.id)
+              .trim() ===
+            String(idBuscado)
+              .trim()
+          );
 
-<p>
-El código ingresado no corresponde a un certificado UAVSICS válido.
-</p>
+        }
 
+      );
 
-`;
 
 
-return;
+    // =================================================
+    // CERTIFICADO NO ENCONTRADO
+    // =================================================
 
-}
+    if (!certificado) {
 
 
+      document
+        .getElementById("contenido")
+        .innerHTML = `
 
+          <h2>❌ Certificado no encontrado</h2>
 
-if (certificado.estado === "Revocado") {
+          <p>
+          El código ingresado no corresponde a un
+          certificado UAVSICS válido.
+          </p>
 
+        `;
 
-document.getElementById("contenido").innerHTML = `
 
+      registrarValidacion(
 
-<div class="sello-revocado">
+        idBuscado,
 
-<div class="icono-revocado">
-!
-</div>
+        "No encontrado",
 
+        "",
 
-<h2>
-Certificado Revocado
-</h2>
+        ""
 
+      );
 
-<p>
-Este certificado fue revocado por UAVSICS.
-</p>
 
+      return;
 
-</div>
+    }
 
 
 
-<p>
-<strong>Código Certificado:</strong><br>
-${certificado.id}
-</p>
+    // =================================================
+    // CERTIFICADO REVOCADO
+    // =================================================
 
+    if (certificado.estado === "Revocado") {
 
-`;
 
-return;
+      document
+        .getElementById("contenido")
+        .innerHTML = `
 
+          <div class="sello-revocado">
 
-}
+            <div class="icono-revocado">
+            !
+            </div>
 
+            <h2>
+            Certificado Revocado
+            </h2>
 
+            <p>
+            Este certificado fue revocado por UAVSICS.
+            </p>
 
+          </div>
 
-document.getElementById("contenido").innerHTML = `
+          <p>
+          <strong>Código Certificado:</strong><br>
+          ${certificado.id}
+          </p>
 
+        `;
 
-<div class="sello-validado">
 
+      registrarValidacion(
 
-<div class="icono-validado">
-✓
-</div>
+        certificado.id,
 
+        "Revocado",
 
-<h2>
-Certificado Verificado
-</h2>
+        certificado.alumno || "",
 
+        certificado.curso || ""
 
-<p>
-Este certificado ha sido emitido y validado por UAVSICS.
-</p>
+      );
 
 
-</div>
+      return;
 
+    }
 
 
-<p>
-<strong>ID Certificado:</strong><br>
-${certificado.id}
-</p>
 
+    // =================================================
+    // CERTIFICADO VÁLIDO
+    // =================================================
 
-<p>
-<strong>Alumno:</strong><br>
-${certificado.alumno}
-</p>
+    document
+      .getElementById("contenido")
+      .innerHTML = `
 
+        <div class="sello-validado">
 
-<p>
-<strong>Empresa:</strong><br>
-${certificado.empresa || "No informado"}
-</p>
+          <div class="icono-validado">
+          ✓
+          </div>
 
+          <h2>
+          Certificado Verificado
+          </h2>
 
-<p>
-<strong>Curso:</strong><br>
-${certificado.curso}
-</p>
+          <p>
+          Este certificado ha sido emitido y
+          validado por UAVSICS.
+          </p>
 
+        </div>
 
-<p>
-<strong>Duración:</strong><br>
-${certificado.horas || "No informado"} horas
-</p>
+        <p>
+        <strong>ID Certificado:</strong><br>
+        ${certificado.id}
+        </p>
 
+        <p>
+        <strong>Alumno:</strong><br>
+        ${certificado.alumno}
+        </p>
 
-<p>
-<strong>Fecha de emisión:</strong><br>
-${certificado.fecha}
-</p>
+        <p>
+        <strong>Empresa:</strong><br>
+        ${certificado.empresa || "No informado"}
+        </p>
 
+        <p>
+        <strong>Curso:</strong><br>
+        ${certificado.curso}
+        </p>
 
-<p>
-<strong>Instructor:</strong><br>
-${certificado.instructor}
-</p>
+        <p>
+        <strong>Duración:</strong><br>
+        ${certificado.horas || "No informado"} horas
+        </p>
 
+        <p>
+        <strong>Fecha de emisión:</strong><br>
+        ${certificado.fecha}
+        </p>
 
+        <p>
+        <strong>Instructor:</strong><br>
+        ${certificado.instructor}
+        </p>
 
-<a href="${certificado.pdf}" target="_blank">
+        <a
+        href="${certificado.pdf}"
+        target="_blank"
+        rel="noopener noreferrer"
+        >
 
-📄 Ver certificado oficial
+        📄 Ver certificado oficial
 
-</a>
+        </a>
 
+      `;
 
-`;
 
+    registrarValidacion(
 
+      certificado.id,
 
-})
+      "Válido",
 
+      certificado.alumno || "",
 
-.catch(error => {
+      certificado.curso || ""
 
+    );
 
-document.getElementById("contenido").innerHTML = `
 
 
-<h2>⚠️ Error de conexión</h2>
+  })
 
 
-<p>
-No fue posible verificar el certificado.
-</p>
+  // =================================================
+  // ERROR AL CONSULTAR certificados.json
+  // =================================================
 
+  .catch(function(error) {
 
-`;
 
+    document
+      .getElementById("contenido")
+      .innerHTML = `
 
+        <h2>⚠️ Error de conexión</h2>
 
-});
+        <p>
+        No fue posible verificar el certificado.
+        </p>
+
+      `;
+
+
+    registrarValidacion(
+
+      idBuscado,
+
+      "Error de conexión",
+
+      "",
+
+      ""
+
+    );
+
+
+    console.error(
+      "Error al verificar el certificado:",
+      error
+    );
+
+
+  });
 
 
 }
