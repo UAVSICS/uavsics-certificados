@@ -53,5 +53,16 @@
     "instructor": "Eduardo Pérez",
     "estado": "Válido",
     "pdf": "https://drive.google.com/file/d/1QdFrLLCX9wuPduB5Y8p6JIqNFosUUJ_H/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0006",
+    "alumno": "Eduardo Pérez Rojas",
+    "empresa": "UAVSICS",
+    "curso": "Autel EVO Max Series",
+    "horas": 30,
+    "fecha": "23-07-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/1MQCvC7zSygHKDCkuDKJCHUP1nzXBAhEr/view?usp=drivesdk"
   }
 ]
