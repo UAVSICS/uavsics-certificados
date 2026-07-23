@@ -7,7 +7,7 @@
     "horas": 30,
     "fecha": "10-07-2026",
     "instructor": "Eduardo Pérez",
-    "estado": "Válido",
+    "estado": "Revocado",
     "pdf": "https://drive.google.com/file/d/1SA6_FJmiIfqN4AymTm7-VkivukjOjW4N/view?usp=drivesdk"
   },
   {
@@ -18,7 +18,7 @@
     "horas": 30,
     "fecha": "20-07-2026",
     "instructor": "Eduardo Pérez",
-    "estado": "Válido",
+    "estado": "Revocado",
     "pdf": "https://drive.google.com/file/d/1sbEfF026rzCpmDzXUqtjhIkjsXs5qHMv/view?usp=drivesdk"
   },
   {
@@ -29,7 +29,7 @@
     "horas": 30,
     "fecha": "20-07-2026",
     "instructor": "Jorge Poblete",
-    "estado": "Válido",
+    "estado": "Revocado",
     "pdf": "https://drive.google.com/file/d/14PbzkMPTYxzNvhUcyLzXjhzAaarN5uDF/view?usp=drivesdk"
   },
   {
@@ -40,7 +40,7 @@
     "horas": 16,
     "fecha": "20-07-2026",
     "instructor": "Jorge Poblete",
-    "estado": "Válido",
+    "estado": "Revocado",
     "pdf": "https://drive.google.com/file/d/12QevywBP5nY5ZnxLOwJZNRmqH02acgbd/view?usp=drivesdk"
   },
   {
@@ -51,7 +51,7 @@
     "horas": 30,
     "fecha": "20-07-2026",
     "instructor": "Eduardo Pérez",
-    "estado": "Válido",
+    "estado": "Revocado",
     "pdf": "https://drive.google.com/file/d/1QdFrLLCX9wuPduB5Y8p6JIqNFosUUJ_H/view?usp=drivesdk"
   },
   {
@@ -62,7 +62,18 @@
     "horas": 30,
     "fecha": "23-07-2026",
     "instructor": "Jorge Poblete",
-    "estado": "Válido",
+    "estado": "Revocado",
     "pdf": "https://drive.google.com/file/d/1MQCvC7zSygHKDCkuDKJCHUP1nzXBAhEr/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0007",
+    "alumno": "Eduardo Pérez Rojas",
+    "empresa": "UAVSICS",
+    "curso": "Autel EVO Max Series",
+    "horas": 30,
+    "fecha": "23-07-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/1qUcVv1v6VIMMngzYHO8wO02p-YUpEou6/view?usp=drivesdk"
   }
 ]
