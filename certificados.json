@@ -75,5 +75,49 @@
     "instructor": "Jorge Poblete",
     "estado": "Válido",
     "pdf": "https://drive.google.com/file/d/1qUcVv1v6VIMMngzYHO8wO02p-YUpEou6/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0008",
+    "alumno": "Diego Peña Casado",
+    "empresa": "Ejército de Chile",
+    "curso": "Autel EVO Max Series",
+    "horas": 30,
+    "fecha": "20-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/1ALDKEXdzGaSnYsVo5FpX8lablwjPHjyy/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0009",
+    "alumno": "Juan Ibarra Rodríguez",
+    "empresa": "Ejército de Chile",
+    "curso": "Autel EVO Max Series",
+    "horas": 30,
+    "fecha": "20-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": ""
+  },
+  {
+    "id": "UAVSICS-2026-0010",
+    "alumno": "Gerardo Soto Carrasco",
+    "empresa": "Ejército de Chile",
+    "curso": "Autel EVO Max Series",
+    "horas": 30,
+    "fecha": "20-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": ""
+  },
+  {
+    "id": "UAVSICS-2026-0011",
+    "alumno": "Lucas García Troncoso",
+    "empresa": "Ejército de Chile",
+    "curso": "Autel EVO Max Series",
+    "horas": 30,
+    "fecha": "20-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": ""
   }
 ]
