@@ -119,5 +119,60 @@
     "instructor": "Jorge Poblete",
     "estado": "Válido",
     "pdf": "https://drive.google.com/file/d/1R3x7a8GI1Q7p_uZyehTRgML6ntzdCpYj/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0012",
+    "alumno": "Maribel Morales Cruz",
+    "empresa": "Consejo de Pueblos Atacameños",
+    "curso": "WingtraRAY",
+    "horas": 30,
+    "fecha": "28-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": "https://drive.google.com/file/d/1trB9YmNXAG1Sl4SZX7UBd4P5l9zyDDNY/view?usp=drivesdk"
+  },
+  {
+    "id": "UAVSICS-2026-0013",
+    "alumno": "Adolfo Rojas Bernal",
+    "empresa": "Consejo de Pueblos Atacameños",
+    "curso": "WingtraRAY",
+    "horas": 30,
+    "fecha": "28-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": ""
+  },
+  {
+    "id": "UAVSICS-2026-0014",
+    "alumno": "Fernando Chinchilla López",
+    "empresa": "Consejo de Pueblos Atacameños",
+    "curso": "WingtraRAY",
+    "horas": 30,
+    "fecha": "28-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": ""
+  },
+  {
+    "id": "UAVSICS-2026-0015",
+    "alumno": "Pedro Pérez Soza",
+    "empresa": "Consejo de Pueblos Atacameños",
+    "curso": "WingtraRAY",
+    "horas": 30,
+    "fecha": "28-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": ""
+  },
+  {
+    "id": "UAVSICS-2026-0016",
+    "alumno": "Diego Puca Zuleta",
+    "empresa": "Consejo de Pueblos Atacameños",
+    "curso": "WingtraRAY",
+    "horas": 30,
+    "fecha": "28-10-2026",
+    "instructor": "Jorge Poblete",
+    "estado": "Válido",
+    "pdf": ""
   }
 ]
